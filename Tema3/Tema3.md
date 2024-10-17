@@ -193,9 +193,25 @@ def uniform_cost_search(problem):
 
 ## Metodos de búsqueda informados (Informed Search Methods)
 
+Los métodos de búsqueda informados utilizan información sobre el problema para tomar decisiones.
+
+Esta información se conoce como **heurística**, y se utiliza para estimar el coste de llegar al objetivo.
+
+La **heurística** es una función que estima el coste de llegar al objetivo desde un estado dado y debe ser diseñado específicamente para cada problema.
+
+Para que un algoritmo de búsqueda informado sea óptimo, la heurística debe ser **admisible** y **consistente**.
+
+- Una heurística es **admisible** si nunca sobreestima el coste de llegar al objetivo.
+- Una heurística es **consistente** si para cada nodo n y cada sucesor n' de n generado por cualquier acción a, el coste estimado de llegar al objetivo desde n no es mayor que el coste de llegar a n' más el coste de aplicar a.
+
 ### Búsqueda voraz (Greedy Search)
 
+- Estrategia: Expande el nodo que parece más cercano al objetivo.
+- Problema: Puede caer en caminos no óptimos.
+
 ### Búsqueda A* (A* Search)
+
+- Estrategia: Expande el nodo con menor coste acumulado y menor coste estimado al objetivo. (Combinación de UCS y Greedy)
 
 ## Búsqueda adversarial
 
