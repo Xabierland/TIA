@@ -49,6 +49,14 @@ Este algoritmo tiene una complejidad de O(b^m), donde b es el factor de ramifica
 
 La busqueda en anchura es un algoritmo de busqueda no informado que se basa en explorar todos los nodos de un arbol de busqueda a la misma profundidad antes de explorar los nodos de la siguiente profundidad. Para ello, se va explorando todos los nodos de un nivel antes de pasar al siguiente nivel.
 
+Psuedocodigo:
+
+```pseudo
+
+```
+
+Python:
+
 ```python
 def bfs(graph, start, goal):
     queue = [(start, [start])]
@@ -97,7 +105,35 @@ Un heuristico es una funcion que estima el coste de llegar a la solucion desde u
 
 ## 3.4. Busqueda adversarial
 
+- Juegos de suma cero
+  - La suma de las recompensas de los jugadores es cero.
+  - Lo que es bueno para un jugador es malo para el otro.
+  - Siempre se tomaran acciones que minimicen la recompensa del oponente. (Minimax)
+- Juegos generales
+  - No son deterministas ni de suma cero.
+  - Lo que quiere un jugador no es necesariamente malo para el otro.
+  - Puede existir cooperación entre jugadores.
+Juegos de suma cero
+
 ### 3.4.1. Minmax
+
+Minmax es un algoritmo de busqueda adversarial que se basa en explorar todos los nodos del arbol de busqueda para encontrar la mejor jugada en un juego de suma cero. Para ello, se va alternando entre los jugadores para maximizar la recompensa del jugador y minimizar la recompensa del oponente.
+
+```python
+def minimax(node, depth, maximizingPlayer):
+    if depth == 0 or node.is_terminal():
+        return node.evaluate()
+    if maximizingPlayer:
+        value = -inf
+        for child in node.children():
+            value = max(value, minimax(child, depth - 1, False))
+        return value
+    else:
+        value = inf
+        for child in node.children():
+            value = min(value, minimax(child, depth - 1, True))
+        return value
+```
 
 ### 3.4.2. Pda alfa-beta
 

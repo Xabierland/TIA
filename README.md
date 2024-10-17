@@ -15,4 +15,3 @@ Teoría y ejercicios de la asignatura de técnicas de inteligencia artificial
   - Búsqueda y juegos. Búsqueda adversarial
 - Tema 4 - Aprendizaje Supervisado
 - Tema 5 - Aprendizaje por refuerzo (Reinforcement Learning)
-
