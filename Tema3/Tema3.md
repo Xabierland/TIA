@@ -15,7 +15,9 @@
       - [Propiedades de UCS](#propiedades-de-ucs)
   - [Metodos de búsqueda informados (Informed Search Methods)](#metodos-de-búsqueda-informados-informed-search-methods)
     - [Búsqueda voraz (Greedy Search)](#búsqueda-voraz-greedy-search)
+      - [Implementación de Greedy](#implementación-de-greedy)
     - [Búsqueda A Star (A\* Search)](#búsqueda-a-star-a-search)
+      - [Implementación de A\*](#implementación-de-a)
   - [Arboles de juego](#arboles-de-juego)
   - [Búsqueda adversarial](#búsqueda-adversarial)
     - [Minimax](#minimax)
@@ -216,9 +218,72 @@ Para que un algoritmo de búsqueda informado sea óptimo, la heurística debe se
 - Estrategia: Expande el nodo que parece más cercano al objetivo.
 - Problema: Puede caer en caminos no óptimos.
 
+#### Implementación de Greedy
+
+```pseudo
+Greedy(u)
+    MIENTRAS haya elementos en la cola de prioridad:
+        nodo = sacar nodo de la cola de prioridad
+        SI nodo no ha sido visitado:
+            SI nodo es objetivo:
+                DEVOLVER nodo
+            SI NO:
+                Añadir nodo a visitados
+                Añadir sucesores a la cola de prioridad ordenados por heurística
+```
+
+```python
+def greedy_search(problem):
+    visited = set()
+    queue = [(problem.heuristic(problem.initial_state), problem.initial_state)]
+    while queue:
+        _, state = queue.pop(0)
+        if problem.is_goal(state):
+            return state
+        visited.add(state)
+        for action in problem.actions(state):
+            new_state = problem.result(state, action)
+            if new_state not in visited:
+                queue.append((problem.heuristic(new_state), new_state))
+                queue.sort()
+    return None
+```
+
 ### Búsqueda A Star (A* Search)
 
 - Estrategia: Expande el nodo con menor coste acumulado y menor coste estimado al objetivo. (Combinación de UCS y Greedy)
+
+#### Implementación de A*
+
+```pseudo
+AStar(u)
+    MIENTRAS haya elementos en la cola de prioridad:
+        nodo = sacar nodo de la cola de prioridad
+        SI nodo no ha sido visitado:
+            SI nodo es objetivo:
+                DEVOLVER nodo
+            SI NO:
+                Añadir nodo a visitados
+                Añadir sucesores a la cola de prioridad ordenados por f(n) = g(n) + h(n)
+```
+
+```python
+def a_star_search(problem):
+    visited = set()
+    queue = [(problem.heuristic(problem.initial_state), 0, problem.initial_state)]
+    while queue:
+        _, cost, state = queue.pop(0)
+        if problem.is_goal(state):
+            return state
+        visited.add(state)
+        for action in problem.actions(state):
+            new_state = problem.result(state, action)
+            new_cost = cost + problem.cost(state, action)
+            if new_state not in visited:
+                queue.append((new_cost + problem.heuristic(new_state), new_cost, new_state))
+                queue.sort()
+    return None
+```
 
 ## Arboles de juego
 
@@ -391,6 +456,12 @@ Con una buena ordenación, el podado Alpha-Beta puede doblar la profundidad expl
 Mientras que Minimax supone que siempre se tomará la mejor decisión, Expectimax asume que los oponentes pueden toman decisiones aleatorias.
 
 Expectimax calcula las utilidades esperadas mediante una media ponderada de los posibles resultados.
+
+Se utiliza en situaciones como:
+
+- Aleatoriedad explícita: Como lanzar dados.
+- Oponentes impredecibles: Como fantasmas en Pacman que se mueven al azar.
+- Fallos de acciones: Ejemplo, un robot puede fallar al moverse si sus ruedas resbalan.
 
 #### Implementación de Expectimax
 
