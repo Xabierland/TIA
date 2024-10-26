@@ -52,7 +52,7 @@ El tamaño del espacio de estados varía en función de la complejidad del probl
 
 ## 1.4. Representación de Búsqueda: Grafos y Árboles
 
-- Grafos de espacio de estados: Los nodos representan configuraciones del mundo, y los arcos representan los resultados de las acciones. El objetivo es un nodo en el grafo.
+- Grafos de espacio de estados: Los nodos representan configuraciones del mundo, y los arcos representan las acciones que llevan de un nodo a otro. El objetivo es un nodo en el grafo.
 
 - Árboles de búsqueda: Representan planes y sus resultados en un formato jerárquico. El estado inicial es la raíz, y los nodos hijos son los sucesores.
 

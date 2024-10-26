@@ -36,7 +36,6 @@ La IA fue tema central de predicciones de ciencia ficción, como en la película
 
 La IA se puede entender como:
 
-1. Hacer que la máquina piense y actúe como un ser humano.
-2. Hacer que la máquina piense y actúe de manera racional.
+- Hacer que la máquina piense y actúe de manera racional.
 
 **Racionalidad**: Maximizar la obtención de objetivos predefinidos a través de decisiones que maximicen la utilidad esperada.
