@@ -16,10 +16,18 @@
 Un agente percibe su entorno a través de **sensores** y actúa sobre él usando **actuadores**.
 El comportamiento de un agente se ve influido por su capacidad de observación y las características del entorno
 
-- **Fully observable/partially observable**: Si el entorno es completamente observable, el agente no requiere memoria.
-- **Discrete/continuous**: Si el entorno es continuo, el agente podría no ser capaz de enumerar todos los estados.
-- **Stochastic/deterministic**: En un entorno estocástico, el agente debe estar preparado para contingencias.
-- **Single-agent/multi-agent**: En entornos multi-agente, puede ser necesario usar comportamientos aleatorios.
+- **Fully observable/partially observable**
+  - **Fully observable**: El agente tiene acceso a toda la información del entorno.
+  - **Partially observable**: El agente no tiene acceso a toda la información del entorno.
+- **Discrete/continuous**
+  - **Discrete**: El entorno tiene un numero finito de estados.
+  - **Continuous**: El entorno tiene un numero infinito de estados.
+- **Stochastic/deterministic**
+  - **Stochastic**: El entorno es incierto.
+  - **Deterministic**: El entorno es predecible.
+- **Single-agent/multi-agent**
+  - **Single-agent**: Un solo agente en el entorno.
+  - **Multi-agent**: Varios agentes en el entorno.
 
 ### 1.1.1. Agentes Reflex vs. Agentes que Planifican vs. Agentes que Replanifican
 
