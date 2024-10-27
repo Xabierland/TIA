@@ -153,8 +153,8 @@ def breadth_first_search(problem):
 
 #### Propiedades de BFS
 
-- Complejidad en tiempo: O(b^s), donde b es el factor de ramificación y s la profundidad de la solución más corta.
-- Complejidad en espacio: O(b^s), donde b es el factor de ramificación y s la profundidad de la solución más
+- Complejidad en tiempo: O(b^s), donde b es el factor de ramificación y s la profundidad de la solución menos profunda.
+- Complejidad en espacio: O(b^s), donde b es el factor de ramificación y s la profundidad de la solución menos profunda.
 
 ### Búsqueda de coste uniforme (Uniform-Cost Search)
 
@@ -211,7 +211,7 @@ La **heurística** es una función que estima el coste de llegar al objetivo des
 Para que un algoritmo de búsqueda informado sea óptimo, la heurística debe ser **admisible** y **consistente**.
 
 - Una heurística es **admisible** si nunca sobreestima el coste de llegar al objetivo.
-- Una heurística es **consistente** si para cada nodo n y cada sucesor n' de n generado por cualquier acción a, el coste estimado de llegar al objetivo desde n no es mayor que el coste de llegar a n' más el coste de aplicar a.
+- Una heurística es **consistente** si la diferencia entre dos nodos contiguos es menor o igual al coste de la acción que los conecta.
 
 ### Búsqueda voraz (Greedy Search)
 
@@ -518,3 +518,6 @@ def expect_value(state):
 ```
 
 #### Propiedades de Expectimax
+
+- Óptimo: COntra un oponente imperfecto.
+- Eficiencia: Igual que Minimax e igual que DFS.

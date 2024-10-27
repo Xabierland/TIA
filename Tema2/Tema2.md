@@ -46,7 +46,7 @@ Un problema de busqueda tiene tres componentes:
 
 - El espacio de estados
 - Una función de sucesión
-- Un estado inicial
+- Un estado inicial junto con la función objetivo
 
 Una solución es una secuencia de acciones que llevan del estado inicial a un estado objetivo.
 
