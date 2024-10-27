@@ -519,5 +519,5 @@ def expect_value(state):
 
 #### Propiedades de Expectimax
 
-- Óptimo: COntra un oponente imperfecto.
+- Óptimo: Contra un oponente imperfecto.
 - Eficiencia: Igual que Minimax e igual que DFS.
