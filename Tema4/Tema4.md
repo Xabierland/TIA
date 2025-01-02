@@ -127,7 +127,7 @@ $$ L(y, \hat{y}) = -y \log(\hat{y}) - (1 - y) \log(1 - \hat{y}) $$
 
 o
 
-$$ L(y, \hat{y}) = -\frac{1}{n} [ y_i \ln(\hat{y}_i) + (1 - y_i) \ln(1 - \hat{y}_i) ]$$ 
+$$ L(y, \hat{y}) = -\frac{1}{n} [ y_i \ln(\hat{y}_i) + (1 - y_i) \ln(1 - \hat{y}_i) ]$$
 
 **Multiclase:**
 
