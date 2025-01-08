@@ -4,6 +4,12 @@
   - [Introducción](#introducción)
   - [Multi-armed Bandit](#multi-armed-bandit)
   - [Markov Decision Process](#markov-decision-process)
+    - [Política](#política)
+    - [Problemas con los MDPs](#problemas-con-los-mdps)
+  - [Aprendizaje Temporal](#aprendizaje-temporal)
+    - [Q-Learning](#q-learning)
+    - [SARSA](#sarsa)
+    - [Q-Learning Aproximado](#q-learning-aproximado)
 
 ## Introducción
 
@@ -33,3 +39,54 @@ El agente debe empezar probando de forma aleatoria cada palanca y ir evaluando l
 En estos problemas cada accion sobre el entorno no influye sobre el siguiente, es decir, no hay un estado que se vea afectado por la acción anterior. Usar mucho una palanca no cambia las probabilidades del resto de palancas.
 
 ## Markov Decision Process
+
+En los Markov Decision Process a diferencia de en los problemas de Multi-armed Bandit las acciones del agente si influyen en el entorno y en las recompensas futuras.
+En estos casos conocemos las probabilidades de transición entre estados y las recompensas asociadas a cada estado.
+
+### Política
+
+La política es el mapeo entre los estados y las acciones. Es decir, la política define que acción tomar en cada estado basado en la información que tenemos por el agente cuando alcance cada uno de los estados. Se representa como $\pi$ y el objetivo es encontrar la política óptima $\pi^*$ que maximice la recompensa acumulada. Para ello usamos el Value Iteration.
+
+La fórmula del Value Iteration es la siguiente:
+
+$$
+V_{k+1}(s) = \max_a \sum_{s'} T(s,a,s') [R(s,a,s') + \gamma V_k(s')]
+$$
+
+donde:
+
+- $V_k(s)$ es el valor del estado $s$ en la iteración $k$.
+- $a$ es una acción.
+- $T(s,a,s')$ es la probabilidad de transición del estado $s$ al estado $s'$ dado que se tomó la acción $a$.
+- $R(s,a,s')$ es la recompensa recibida al transitar del estado $s$ al estado $s'$ tomando la acción $a$.
+- $\gamma$ es el factor de descuento, que representa la importancia de las recompensas futuras.
+
+El objetivo es iterar esta fórmula hasta que la diferencia entre $V_{k+1}(s)$ y $V_k(s)$ sea menor que un umbral definido, indicando que se ha alcanzado la convergencia.
+
+### Problemas con los MDPs
+
+La realidad es que no se suelen conocer las funciones de transición ni las recompensas asociadas a cada estado.
+Dos estrategias para resolver este problema son:
+
+- **Model-based**: Aprender un modelo del entorno y luego usar value iteration para encontrar la política óptima. Muy costoso computacionalmente.
+- **Model-free**: Aprender directamente de la experiencia usando métodos de aprendizaje por episodios. Un episodio consiste en exponer al agente a un ciclo completo desde un estado inicial a uno final.
+  - **Monte Carlo**: El premio se calcula al final de cada episodio.
+  - **Aprendizaje Temporal**: El premio se calcula en cada paso del episodio.
+
+## Aprendizaje Temporal
+
+### Q-Learning
+
+**Q-Learning**: En cada episodio se dan diferentes pasos bien aleatorios o bien tomando la mejor decisión en base a la información obtenida y se actualiza la función Q. La eleccion de la acción se hace en base a la variable $\epsilon$ que indica la probabilidad de tomar una acción aleatoria. A medida que se va obteniendo información se va reduciendo el valor de $\epsilon$. Tambien se suele ir reduciendo el valor de $\alpha$ que indica la importancia de la nueva información. De esta forma en un comienzo empezamos explorando y a medida que obtenemos información vamos explotando la mejor acción.
+
+![Q-Learning](.img/qlearning.png)
+
+### SARSA
+
+**SARSA**: Igual que Q-Learning en vez de jugar tomar la mejor acción del estado al que estamos transitando, se selecciona el valor Q de una acción seleccionada según la política actual. Es decir, esta segunda accion, al igual que la primera, esta sujeta al valor de $\epsilon$ y puede ser una accion exploración o explotación.
+
+![SARSA](.img/sarsa.png)
+
+### Q-Learning Aproximado
+
+**Q-Learning Aproximado**: Q-Learning no es viable para problemas con muchos estados. En estos casos se representan los estados como vectores de rasgos y se aproxima la función Q.
