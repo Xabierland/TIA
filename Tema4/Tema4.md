@@ -250,3 +250,23 @@ El Mini-Batch Gradient Descent es una variante del Gradient Descent que actualiz
 Combina las ventajas del Stochastic Gradient Descent y el Batch Gradient Descent, siendo más rápido que el Batch Gradient Descent y más eficiente en términos de memoria que el Stochastic Gradient Descent.
 
 ## Aprendizaje secuencial
+
+Ciertos problemas requieren que el modelo aprenda de forma secuencial ya que depende de los estados anteriores.
+Algunos ejemplos son:
+
+- Lenguaje: Predecir palabras, caracteres, tokens...
+- Finanzas: Predecir valores en la bolsa.
+- Biología: Análisis de secuencias de ADN.
+- Medicina: Interpretar electrocardiogramas.
+
+Para todo esto se suelen usar redes neuronales recurrentes (RNN). En estas redes ademas de tener una entrada y una salida con sus pesos, se tiene una entrada adicional que permite que la salida de la neurona se retroalimente a la neurona en el siguiente paso.
+
+No obstante existen ciertos problemas con las RNNs:
+
+- Desvanecimiento o explosión del gradiente.
+  - A medida que se propagan los errores hacia atrás, los gradientes se multiplican y pueden hacerse muy grandes o muy pequeños.
+  - Se suele usar LSTM que mitiga este problema al permitir "sumar" derivadas en lugar de multiplicarlas.
+- Dependencia a largo plazo.
+  - Las RNNs tienen dificultades para aprender dependencias a largo plazo.
+- Computacionalmente costosas.
+  - No se puede paralelizar facilmente.
